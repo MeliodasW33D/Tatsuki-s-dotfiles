@@ -1,0 +1,159 @@
+// Waybar configuration file
+// Save this as ~/.config/waybar/config.jsonc
+
+{
+    "layer": "top", // Display Waybar at the top layer
+    "position": "top", // Position Waybar at the top of the screen
+    "height": 32, // Height of the Waybar
+    "spacing": 4, // Spacing between modules
+
+    // Modules to display on the left side of the bar
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/mode"
+    ],
+
+    // Modules to display in the center of the bar
+    "modules-center": [
+        "hyprland/window"
+    ],
+
+    // Modules to display on the right side of the bar
+    "modules-right": [
+        "cpu",
+        "memory",
+        "temperature",
+        "battery",
+        "pulseaudio",
+        "network",
+        "clock", // Your clock module is here
+        "tray"
+    ],
+
+    // --- Module Definitions ---
+
+    // hyprland Workspaces Module
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "", // Dot icon for active workspace
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "10": "",
+            "active": "", // Filled dot for active workspace
+            "default": ""
+        },
+        "on-click": "activate",
+        "all-outputs": true // Show workspaces from all outputs
+    },
+
+    // hyprland Mode Module (e.g., "resize", "default")
+    "hyprland/mode": {
+        "format": " {}", // Question mark icon
+        "tooltip": false
+    },
+
+    // hyprland Window Title Module
+    "hyprland/window": {
+        "max-length": 50, // Max length of the window title
+        "tooltip": true,
+        "format": "{}",
+        "rewrite": {
+            "(.*) — Mozilla Firefox": " $1", // Firefox icon
+            "(.*) - Google Chrome": " $1", // Chrome icon (Font Awesome 6)
+            "(.*) - Brave": " $1", // Brave icon (Font Awesome 6 - using shield or similar if web browser not available)
+            "(.*) - Alacritty": " $1", // Terminal icon
+            "(.*) - VS Code": " $1", // Code icon
+            "(.*) - Spotify": " $1", // Spotify icon
+            "(.*) - Telegram": " $1" // Telegram icon
+            
+        }
+    },
+
+    // CPU Usage Module
+    "cpu": {
+        "format": " {usage}%", // CPU icon
+        "tooltip": true,
+        "interval": 10,
+        "max-length": 10
+    },
+
+    // Memory Usage Module
+    "memory": {
+        "format": "ori {percentage}%", // Memory icon (using a generic icon, Font Awesome might have better options)
+        "tooltip": true,
+        "interval": 10,
+        "max-length": 10,
+        "on-click": "gnome-system-monitor" // Example: open system monitor on click
+    },
+
+    // Temperature Module (e.g., CPU temperature)
+    "temperature": {
+        "thermal-zone": 0, // Adjust if needed
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C", // Temperature icon
+        "format-critical": "🔥 {temperatureC}°C", // Fire icon for critical temp
+        "tooltip": true,
+        "interval": 5
+    },
+
+    // Battery Module
+    "battery": {
+        "states": {
+            "good": 90,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "充電 {capacity}%", // Charging icon
+        "format-plugged": "AC {capacity}%", // Plugged in icon
+        "format-alt": "{time}", // Show time remaining on alt click
+        "format-icons": ["", "", "", "", ""], // Battery icons (empty to full)
+        "tooltip": true,
+        "interval": 60
+    },
+
+    // Pulseaudio (Volume) Module
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": " {volume}%", // Bluetooth icon
+        "format-muted": " Muted", // Muted icon
+        "format-icons": {
+            "default": ["", "", ""] // Volume icons (low to high)
+        },
+        "on-click": "pavucontrol", // Open volume control on click
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+        "tooltip": true
+    },
+
+    // Network Module
+    "network": {
+        "format-wifi": " {signalStrength}%", // WiFi icon
+        "format-ethernet": " {ifname}", // Ethernet icon
+        "format-disconnected": " Disconnected", // Disconnected icon
+        "tooltip": true,
+        "interval": 5
+    },
+
+     // Clock Module - MODIFIED FOR 12-HOUR FORMAT AND CAIRO TIMEZONE
+    "clock": {
+        "timezone": "Africa/Cairo", // Set timezone to Egypt/Cairo
+        "format": " {:%I:%M:%S %p}", // Changed from %H to %I for 12-hour, added %p for AM/PM
+        "format-alt": " {:%Y-%m-%d}", // Calendar icon, date format on alt click
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "interval": 1
+    },
+
+    // System Tray Module
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    }
+}

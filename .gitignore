@@ -1,0 +1,23 @@
+# Ignore Git-specific files within subdirectories if you have nested repos
+**/.git/
+
+# Cache directories (often large and recreated)
+.cache/
+.local/share/Trash/
+.thumbnails/
+
+# History files
+.bash_history
+.zsh_history
+.viminfo
+.nvim_history
+
+# Large user data (generally not part of config)
+Downloads/
+Videos/
+Music/
+Pictures/
+Documents/
+.steam/
+.var/
+.flatpak/

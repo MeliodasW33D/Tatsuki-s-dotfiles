@@ -1,0 +1,156 @@
+/* Waybar CSS styling
+ * Save this as ~/.config/waybar/style.css
+ *
+ * This CSS uses a combination of a general text font and Font Awesome for icons.
+ * Ensure Font Awesome 6 Free is installed on your system for icons to display correctly.
+ */
+
+/* General styling for all elements in Waybar */
+* {
+    border: none;
+    border-radius: 8px; /* Rounded corners for all elements */
+    font-family: "Inter", "Roboto", "Font Awesome 6 Free", sans-serif; /* Prioritize Inter, then Roboto, then Font Awesome for icons */
+    font-size: 13px;
+    min-height: 0; /* Remove default min-height */
+    padding: 0 6px; /* Horizontal padding for modules */
+}
+
+/* Main Waybar window styling */
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.9); /* Dark background with some transparency */
+    color: #cdd6f4; /* Light text color */
+    transition-property: background-color;
+    transition-duration: .5s;
+    margin: 4px; /* Margin around the entire bar */
+    border-radius: 10px; /* Slightly more rounded corners for the bar itself */
+}
+
+/* Styling for Waybar modules */
+#cpu,
+#memory,
+#temperature,
+#battery,
+#pulseaudio,
+#network,
+#clock,
+#tray,
+#sway-mode {
+    background-color: rgba(41, 45, 62, 0.8); /* Slightly lighter background for modules */
+    margin: 0 2px; /* Small margin between modules */
+    padding: 4px 8px; /* Padding inside modules */
+    border-radius: 6px; /* Rounded corners for modules */
+}
+
+/* Workspaces module styling */
+#sway-workspaces button {
+    background-color: transparent;
+    color: #cdd6f4;
+    padding: 0 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+}
+
+#sway-workspaces button:hover {
+    background-color: rgba(59, 63, 81, 0.8);
+    color: #a6e3a1; /* Green on hover */
+}
+
+#sway-workspaces button.focused {
+    background-color: #7f849c; /* Accent color for focused workspace */
+    color: #1e1e2e; /* Dark text on accent background */
+}
+
+#sway-workspaces button.urgent {
+    background-color: #f38ba8; /* Red for urgent workspace */
+    color: #1e1e2e;
+}
+
+/* CPU module specific styling */
+#cpu {
+    color: #fab387; /* Orange color for CPU */
+}
+
+/* Memory module specific styling */
+#memory {
+    color: #89b4fa; /* Blue color for Memory */
+}
+
+/* Temperature module specific styling */
+#temperature {
+    color: #f9e2af; /* Yellow color for Temperature */
+}
+
+#temperature.critical {
+    background-color: #f38ba8; /* Red background for critical temperature */
+    color: #1e1e2e;
+}
+
+/* Battery module specific styling */
+#battery {
+    color: #a6e3a1; /* Green color for Battery */
+}
+
+#battery.charging, #battery.plugged {
+    color: #a6e3a1; /* Green for charging/plugged */
+}
+
+#battery.warning {
+    color: #f9e2af; /* Yellow for warning battery */
+}
+
+#battery.critical {
+    background-color: #f38ba8; /* Red background for critical battery */
+    color: #1e1e2e;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Animation for critical battery */
+@keyframes blink {
+    to {
+        background-color: #1e1e2e;
+        color: #f38ba8;
+    }
+}
+
+/* Pulseaudio module specific styling */
+#pulseaudio {
+    color: #cba6f7; /* Purple color for Pulseaudio */
+}
+
+#pulseaudio.muted {
+    background-color: #585b70;
+    color: #cdd6f4;
+}
+
+/* Network module specific styling */
+#network {
+    color: #94e2d5; /* Cyan color for Network */
+}
+
+#network.disconnected {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+}
+
+/* Clock module specific styling */
+#clock {
+    color: #f5e0dc; /* Light pink/white for Clock */
+}
+
+/* Tray module specific styling */
+#tray {
+    background-color: rgba(41, 45, 62, 0.8);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+/* Sway Window module specific styling */
+#sway-window {
+    color: #89dceb; /* Light blue for window title */
+    font-weight: bold;
+    padding: 0 10px;
+}
